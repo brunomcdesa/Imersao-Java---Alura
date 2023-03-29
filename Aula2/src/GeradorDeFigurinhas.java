@@ -1,16 +1,19 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
-import java.awt.Font;
 
 import javax.imageio.ImageIO;
 
 public class GeradorDeFigurinhas {
 
-    public void criar() throws Exception {
+    public void criar(InputStream inputStream, String nomeArquivo) throws Exception {
         // Leitura da imagem
-        BufferedImage imgOriginal = ImageIO.read(new File("imgEntrada/filme.jpg"));
+        //InputStream inputStream = new FileInputStream(new File("imgEntrada/filme.jpg"));
+        //InputStream inputStream = new URL("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies_1.jpg").openStream();
+        BufferedImage imgOriginal = ImageIO.read(inputStream);
 
         // Criar nova imagem com transparencia e com tamanho novo
         int largura = imgOriginal.getWidth();
@@ -23,18 +26,14 @@ public class GeradorDeFigurinhas {
         graphics.drawImage(imgOriginal, 0, 0, null);
 
         // Configurar fonte
-        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64);
+        graphics.setColor(Color.YELLOW);
         graphics.setFont(fonte);
 
         // Escrever uma frase na nova imagem
-        graphics.drawString("TOPZERA", 0, novaAltura-100);
+        graphics.drawString("TOPZERA", 165, novaAltura-100);
 
         // Escrever a nova imagem em um arquivo
-        ImageIO.write(novaImagem, "png", new File("imgSaida/figurinha.png"));
-    }
-
-    public static void main(String[] args) throws Exception {
-       var gerador = new GeradorDeFigurinhas();
-       gerador.criar();
+        ImageIO.write(novaImagem, "png", new File(nomeArquivo));
     }
 }
