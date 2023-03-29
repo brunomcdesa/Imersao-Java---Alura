@@ -19,7 +19,6 @@ public class App {
         var request = HttpRequest.newBuilder(endereco).GET().build();
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
-        System.out.println(body);
 
         // Pegar apenas os dados necessários (titulo, poster, classificação)
         var parser = new JsonParser();
@@ -34,7 +33,7 @@ public class App {
             String titulo = filme.get("title");
             
             InputStream inputStream = new URL(urlImagem).openStream();
-            String nomeArquivo = titulo + ".png";
+            String nomeArquivo = "saida/"+ titulo + ".png";
 
            
             gerador.criar(inputStream, nomeArquivo);
