@@ -20,6 +20,10 @@ public class Linguagem {
         this.ranking = ranking;
     }
 
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
+
     public String getId() {
         return id;
     }
